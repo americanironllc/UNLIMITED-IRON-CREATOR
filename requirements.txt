@@ -32,3 +32,6 @@
 
 # Basic requirements (always needed)
 python>=3.8
+
+# Web interface
+streamlit>=1.28.0
