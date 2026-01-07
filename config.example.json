@@ -1,0 +1,36 @@
+{
+  "output_dir": "generated_media",
+  "default_format": "png",
+  "quality": "high",
+  "enable_text": true,
+  "enable_image": true,
+  "enable_audio": true,
+  "enable_video": true,
+  "api_keys": {
+    "openai": "your-openai-api-key-here",
+    "elevenlabs": "your-elevenlabs-api-key-here",
+    "stability": "your-stability-api-key-here"
+  },
+  "defaults": {
+    "text": {
+      "max_length": 500,
+      "temperature": 0.7,
+      "style": "creative"
+    },
+    "image": {
+      "size": "1024x1024",
+      "style": "realistic"
+    },
+    "audio": {
+      "voice": "neutral",
+      "type": "speech",
+      "format": "mp3"
+    },
+    "video": {
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration": 5,
+      "style": "realistic"
+    }
+  }
+}

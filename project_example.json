@@ -1,0 +1,30 @@
+{
+  "prompts": {
+    "text": "Write an inspiring message about the power of AI and creativity",
+    "image": "A vibrant abstract representation of AI and human creativity merging",
+    "audio": "Uplifting and energetic background music",
+    "video": "Particles forming into shapes and patterns, representing data and creativity"
+  },
+  "params": {
+    "text_params": {
+      "max_length": 300,
+      "temperature": 0.8,
+      "style": "inspirational"
+    },
+    "image_params": {
+      "size": "1920x1080",
+      "style": "abstract"
+    },
+    "audio_params": {
+      "type": "music",
+      "duration": 30,
+      "format": "mp3"
+    },
+    "video_params": {
+      "duration": 10,
+      "resolution": "1920x1080",
+      "fps": 60,
+      "style": "abstract"
+    }
+  }
+}
