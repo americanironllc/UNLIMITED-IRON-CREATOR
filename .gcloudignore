@@ -1,0 +1,92 @@
+# This file specifies files that are *not* uploaded to Google Cloud
+# using gcloud. It follows the same syntax as .gitignore, with the addition of
+# "#!include" directives (which insert the entries of the given .gitignore-style
+# file at that point).
+#
+# For more information, run:
+#   $ gcloud topic gcloudignore
+#
+.gcloudignore
+# If you would like to upload your .git directory, .gitignore file or files
+# from your .gitignore file, remove the corresponding line below:
+.git
+.gitignore
+.gitignore.disabled
+
+# Python pycache:
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.tox/
+htmlcov/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Documentation build files
+docs/_build/
+site/
+
+# Generated media folder (not needed in deployment)
+generated_media/
+test_output/
+
+# Example and demo files
+demo.py
+
+# Development scripts
+setup.sh
+
+# Git history
+.git/
+.github/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Project specific
+config.json
+*.local.json
+.env
+.env.local
