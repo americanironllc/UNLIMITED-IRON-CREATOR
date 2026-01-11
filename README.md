@@ -25,6 +25,11 @@ Deploy this application to Google Cloud Run with a single click - no setup requi
 
 **Cost:** Most usage falls within the [free tier](https://cloud.google.com/run/pricing). Typical cost: $0-5/month for light usage.
 
+📚 **Detailed Guides:**
+- [ONE-CLICK-DEPLOY.md](./ONE-CLICK-DEPLOY.md) - Complete deployment walkthrough
+- [DEPLOYMENT.md](./DEPLOYMENT.md) - Manual deployment & advanced configuration
+- [DEPLOYMENT-CHECKLIST.md](./DEPLOYMENT-CHECKLIST.md) - Technical verification checklist
+
 ---
 
 ## 🌟 Features
