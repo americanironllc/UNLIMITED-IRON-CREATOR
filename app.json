@@ -1,0 +1,45 @@
+{
+  "name": "UNLIMITED IRON CREATOR",
+  "description": "A comprehensive AI multimedia generation framework with Streamlit interface. Generate text, images, audio, and video content with AI - no limits on creativity!",
+  "repository": "https://github.com/americanironllc/UNLIMITED-IRON-CREATOR",
+  "logo": "https://cloud.google.com/_static/images/cloud/icons/favicons/onecloud/super_cloud.png",
+  "keywords": [
+    "ai",
+    "multimedia",
+    "generator",
+    "streamlit",
+    "text-generation",
+    "image-generation",
+    "audio-generation",
+    "video-generation",
+    "gpt",
+    "dall-e",
+    "stable-diffusion"
+  ],
+  "env": {
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for text and image generation (optional - app works without it)",
+      "value": "",
+      "required": false
+    },
+    "ELEVENLABS_API_KEY": {
+      "description": "ElevenLabs API key for audio generation (optional)",
+      "value": "",
+      "required": false
+    },
+    "STABILITY_API_KEY": {
+      "description": "Stability AI API key for image generation (optional)",
+      "value": "",
+      "required": false
+    }
+  },
+  "options": {
+    "allow-unauthenticated": true,
+    "memory": "2Gi",
+    "cpu": "2",
+    "port": 8080,
+    "max-instances": 10,
+    "min-instances": 0,
+    "timeout": 300
+  }
+}

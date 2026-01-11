@@ -1,0 +1,89 @@
+# Git
+.git
+.gitignore
+.gitignore.disabled
+.github
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info
+dist/
+build/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+.tox/
+htmlcov/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Documentation
+*.md
+docs/
+CONTRIBUTING.md
+DEPLOYMENT.md
+ONE-CLICK-DEPLOY.md
+LICENSE
+
+# Example and config files
+config.example.json
+project_example.json
+demo.py
+setup.sh
+
+# Generated media (not needed in container)
+generated_media/
+test_output/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local config (secrets shouldn't be in image)
+config.json
+*.local.json
+.env
+.env.local
+
+# Deployment files (not needed inside container)
+app.json
+button.yaml
+service.yaml

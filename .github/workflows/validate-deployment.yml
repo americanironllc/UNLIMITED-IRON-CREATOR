@@ -1,0 +1,69 @@
+name: Validate Deployment Configuration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyyaml jsonschema
+    
+    - name: Validate JSON files
+      run: |
+        python -c "import json; json.load(open('app.json'))"
+        echo "✓ app.json is valid"
+    
+    - name: Validate YAML files
+      run: |
+        python -c "import yaml; yaml.safe_load(open('service.yaml'))"
+        echo "✓ service.yaml is valid"
+        python -c "import yaml; yaml.safe_load(open('button.yaml'))"
+        echo "✓ button.yaml is valid"
+    
+    - name: Validate Python syntax
+      run: |
+        python -m py_compile streamlit_app.py
+        echo "✓ streamlit_app.py syntax is valid"
+        python -m py_compile multimedia_generator.py
+        echo "✓ multimedia_generator.py syntax is valid"
+    
+    - name: Check required files
+      run: |
+        test -f Dockerfile && echo "✓ Dockerfile exists" || exit 1
+        test -f requirements.txt && echo "✓ requirements.txt exists" || exit 1
+        test -f app.json && echo "✓ app.json exists" || exit 1
+        test -f service.yaml && echo "✓ service.yaml exists" || exit 1
+        test -f button.yaml && echo "✓ button.yaml exists" || exit 1
+        test -f .dockerignore && echo "✓ .dockerignore exists" || exit 1
+        test -f .gcloudignore && echo "✓ .gcloudignore exists" || exit 1
+    
+    - name: Validate Dockerfile syntax
+      run: |
+        docker run --rm -i hadolint/hadolint < Dockerfile || true
+        echo "✓ Dockerfile syntax checked"
+    
+    - name: Summary
+      run: |
+        echo "================================"
+        echo "✅ All deployment configurations are valid!"
+        echo "================================"
+        echo ""
+        echo "Ready for one-click deployment to Google Cloud Run"
+        echo ""
+        echo "Deploy now: https://deploy.cloud.run?git_repo=https://github.com/${{ github.repository }}.git"

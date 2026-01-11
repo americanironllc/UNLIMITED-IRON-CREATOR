@@ -1,0 +1,38 @@
+# Cloud Run Button configuration
+# This enables one-click deployment to Google Cloud Run
+
+# Service configuration
+service:
+  name: unlimited-iron-creator
+  region: us-central1
+  allow-unauthenticated: true
+
+# Build configuration  
+build:
+  source: .
+  dockerfile: Dockerfile
+
+# Runtime configuration
+runtime:
+  cpu: "2"
+  memory: "2Gi"
+  max-instances: 10
+  min-instances: 0
+  timeout: 300
+  port: 8080
+
+# Environment variables (optional - app works without them)
+env:
+  - name: PORT
+    value: "8080"
+  - name: PYTHONUNBUFFERED
+    value: "1"
+
+# Optional: Secrets can be configured after deployment via Google Cloud Console
+# secrets:
+#   - name: OPENAI_API_KEY
+#     secret: openai-api-key
+#   - name: ELEVENLABS_API_KEY
+#     secret: elevenlabs-api-key
+#   - name: STABILITY_API_KEY
+#     secret: stability-api-key
