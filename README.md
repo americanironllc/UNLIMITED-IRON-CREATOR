@@ -4,6 +4,29 @@
 
 A powerful, flexible AI multimedia generation framework that enables you to create text, images, audio, and video content without artificial limitations. Built with Python, this tool provides a unified interface for generating any type of media content using AI.
 
+---
+
+## ⚡ One-Click Deployment
+
+Deploy this application to Google Cloud Run with a single click - no setup required!
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=https://github.com/americanironllc/UNLIMITED-IRON-CREATOR.git)
+
+**What happens when you click:**
+1. Opens Google Cloud Shell with this repository
+2. Automatically builds the Docker container
+3. Deploys to Cloud Run with optimized settings (2GB RAM, 2 CPUs)
+4. Provides you with a live URL in ~3-5 minutes
+5. App is fully functional immediately - API keys are optional and can be added later
+
+**Requirements:**
+- A Google Cloud account (free tier available)
+- Billing enabled (you get $300 in free credits for new accounts)
+
+**Cost:** Most usage falls within the [free tier](https://cloud.google.com/run/pricing). Typical cost: $0-5/month for light usage.
+
+---
+
 ## 🌟 Features
 
 ### Unlimited Media Generation
@@ -62,6 +85,17 @@ python multimedia_generator.py video "A time-lapse of clouds moving" --duration 
 ```bash
 python multimedia_generator.py project --config project_example.json
 ```
+
+### Web Interface
+
+The easiest way to use UNLIMITED IRON CREATOR is through the Streamlit web interface:
+
+```bash
+# Local installation
+streamlit run streamlit_app.py
+```
+
+Or use the **one-click Cloud Run deployment** button above for instant cloud hosting!
 
 ## 📖 Documentation
 
@@ -214,6 +248,58 @@ python multimedia_generator.py project --config project_example.json
 - `fps`: Frames per second (24, 30, 60, etc.)
 - `duration`: Length in seconds
 - `style`: realistic, abstract, cinematic, etc.
+
+## 🚀 Cloud Deployment
+
+### One-Click Deployment to Google Cloud Run
+
+The fastest way to get UNLIMITED IRON CREATOR running in the cloud:
+
+1. **Click the Deploy Button** at the top of this README
+2. **Sign in** to Google Cloud (or create a free account)
+3. **Wait 3-5 minutes** for automatic deployment
+4. **Access your app** at the provided Cloud Run URL
+5. **Optional:** Add API keys later via Google Cloud Console → Secret Manager
+
+**What's Included:**
+- ✅ Fully configured Streamlit web interface
+- ✅ Optimized Cloud Run settings (2GB RAM, 2 CPUs, auto-scaling)
+- ✅ HTTPS endpoint with Google's security
+- ✅ Automatic builds and deployments
+- ✅ Health checks and monitoring
+- ✅ 99.95% uptime SLA
+
+**Post-Deployment (Optional):**
+To enable real AI generation, add your API keys:
+1. Go to [Google Cloud Secret Manager](https://console.cloud.google.com/security/secret-manager)
+2. Create secrets for your API keys (e.g., `openai-api-key`, `elevenlabs-api-key`)
+3. Update your Cloud Run service to mount these secrets as environment variables
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions and configuration options.
+
+### Alternative Deployment Methods
+
+**Manual Cloud Run Deployment:**
+```bash
+gcloud run deploy unlimited-iron-creator \
+  --source . \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --memory 2Gi \
+  --cpu 2
+```
+
+**Docker Deployment:**
+```bash
+docker build -t unlimited-iron-creator .
+docker run -p 8080:8080 unlimited-iron-creator
+```
+
+**Other Platforms:**
+- **Heroku:** Use the included Dockerfile
+- **AWS ECS/Fargate:** Deploy the Docker container
+- **Azure Container Instances:** Use the Dockerfile
+- **Kubernetes:** Use the included `service.yaml` as a starting point
 
 ## 🎯 Use Cases
 
