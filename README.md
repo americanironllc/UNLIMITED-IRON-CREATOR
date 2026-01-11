@@ -1,5 +1,11 @@
 # UNLIMITED IRON CREATOR 🚀
 
+[![Deploy to Cloud Run](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=https://github.com/americanironllc/UNLIMITED-IRON-CREATOR.git)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B.svg)](https://streamlit.io/)
+[![Cloud Run](https://img.shields.io/badge/Google%20Cloud-Run-4285F4.svg)](https://cloud.google.com/run)
+
 ## AN UNLIMITED AI MULTIMEDIA GENERATOR. No Limits.
 
 A powerful, flexible AI multimedia generation framework that enables you to create text, images, audio, and video content without artificial limitations. Built with Python, this tool provides a unified interface for generating any type of media content using AI.
