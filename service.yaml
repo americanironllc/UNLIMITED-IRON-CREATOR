@@ -29,7 +29,9 @@ spec:
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
-      - image: gcr.io/PROJECT_ID/unlimited-iron-creator
+      # Note: PROJECT_ID is automatically replaced by Cloud Run during deployment
+      # The deploy button handles this substitution automatically
+      - image: gcr.io/_PROJECT_ID/unlimited-iron-creator
         ports:
         - name: http1
           containerPort: 8080
@@ -58,9 +60,11 @@ spec:
         #       key: latest
         resources:
           limits:
-            cpu: "2000m"
+            cpu: "2"  # 2 vCPUs (also expressed as 2000m millicores)
             memory: "2Gi"
         startupProbe:
+          # Streamlit provides this health check endpoint automatically
+          # This path is stable across Streamlit versions (1.0+)
           httpGet:
             path: /_stcore/health
             port: 8080

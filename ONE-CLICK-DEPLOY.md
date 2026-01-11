@@ -76,10 +76,14 @@ To connect real AI services (OpenAI, ElevenLabs, Stable Diffusion, etc.), add yo
 
 1. **Create Secrets:**
    ```bash
-   # Open Google Cloud Shell
-   echo -n "your-actual-api-key" | gcloud secrets create openai-api-key --data-file=-
-   echo -n "your-elevenlabs-key" | gcloud secrets create elevenlabs-api-key --data-file=-
-   echo -n "your-stability-key" | gcloud secrets create stability-api-key --data-file=-
+   # Open Google Cloud Shell and replace the placeholder with your actual API key
+   # echo -n prevents adding a newline character to the secret
+   echo -n "sk-proj-..." | gcloud secrets create openai-api-key --data-file=-
+   echo -n "abc123..." | gcloud secrets create elevenlabs-api-key --data-file=-
+   echo -n "sk-..." | gcloud secrets create stability-api-key --data-file=-
+   
+   # Alternative: Interactive method (Cloud Shell will prompt for the secret)
+   # gcloud secrets create openai-api-key
    ```
 
 2. **Grant Access:**

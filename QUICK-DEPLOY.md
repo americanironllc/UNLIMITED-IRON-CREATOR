@@ -51,11 +51,15 @@ After deployment, connect real AI services:
 
 ### Method 1: Google Secret Manager (Recommended)
 ```bash
-# Create secrets
-gcloud secrets create openai-api-key --data-file=-
-gcloud secrets create elevenlabs-api-key --data-file=-
+# Create secrets (replace 'your-key-here' with your actual API key)
+# The --data-file=- flag reads from stdin
+echo -n "your-openai-key-here" | gcloud secrets create openai-api-key --data-file=-
+echo -n "your-elevenlabs-key-here" | gcloud secrets create elevenlabs-api-key --data-file=-
 
-# Update service
+# Alternative: Interactive input (will prompt you to paste the key)
+# gcloud secrets create openai-api-key
+
+# Update service to use the secrets
 gcloud run services update unlimited-iron-creator \
   --region us-central1 \
   --set-secrets="OPENAI_API_KEY=openai-api-key:latest"
