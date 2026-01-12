@@ -186,9 +186,16 @@ start_tunnel() {
     echo "Use 'cloudflared tunnel run $tunnel_name' to run in foreground"
     echo "Or check logs with option 5"
     
-    cloudflared service install
-    sudo systemctl start cloudflared
-    echo -e "${GREEN}✓ Tunnel started${NC}"
+    # Check if systemd is available and user has sudo
+    if command -v systemctl &> /dev/null && sudo -n true 2>/dev/null; then
+        cloudflared service install
+        sudo systemctl start cloudflared
+        echo -e "${GREEN}✓ Tunnel started as systemd service${NC}"
+    else
+        echo -e "${YELLOW}⚠ systemd or sudo not available${NC}"
+        echo "Run tunnel manually with: cloudflared tunnel run $tunnel_name"
+        echo "Or run in background: nohup cloudflared tunnel run $tunnel_name > /tmp/cloudflared.log 2>&1 &"
+    fi
 }
 
 # View logs
@@ -212,8 +219,22 @@ view_logs() {
         3)
             echo -e "${YELLOW}Opening logs in split view...${NC}"
             echo "Press Ctrl+C to exit"
-            docker logs -f unlimited-iron-creator &
-            sudo journalctl -u cloudflared -f
+            echo ""
+            echo "=== Application Logs (Docker) ==="
+            docker logs --tail=50 unlimited-iron-creator &
+            APP_LOG_PID=$!
+            sleep 2
+            echo ""
+            echo "=== Tunnel Logs (Cloudflared) ==="
+            if command -v systemctl &> /dev/null && sudo -n true 2>/dev/null; then
+                sudo journalctl -u cloudflared -n 50 -f &
+                TUNNEL_LOG_PID=$!
+            else
+                echo "systemd not available or no sudo access"
+                echo "Check tunnel logs manually with: cat /tmp/cloudflared.log"
+            fi
+            # Wait for user interrupt
+            wait $APP_LOG_PID 2>/dev/null
             ;;
         *)
             echo "Invalid choice"

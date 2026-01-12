@@ -22,9 +22,6 @@ services:
       - ./generated_media:/app/generated_media
       # Optional: Mount config files
       # - ./config.json:/app/config.json:ro
-    networks:
-      - app-network
-    restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/_stcore/health"]
       interval: 30s
@@ -51,19 +48,6 @@ services:
       - app
     network_mode: "host"
 
-# Optional: Database or storage service
-# Uncomment if you need persistent storage
-#  db:
-#    image: postgres:15-alpine
-#    container_name: unlimited-iron-db
-#    restart: unless-stopped
-#    environment:
-#      POSTGRES_USER: ironuser
-#      POSTGRES_PASSWORD: changeme
-#      POSTGRES_DB: unlimited_iron
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data
-
-# volumes:
-#   generated_media:
-#     driver: local
+networks:
+  app-network:
+    driver: bridge

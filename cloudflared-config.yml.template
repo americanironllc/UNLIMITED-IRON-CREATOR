@@ -9,7 +9,7 @@ credentials-file: /home/YOUR_USERNAME/.cloudflared/TUNNEL_UUID_HERE.json
 
 # Ingress rules define how requests are routed
 ingress:
-  # Main application route
+  # Main application route - handles all traffic to the hostname
   # Replace 'unlimited-iron-creator.yourdomain.com' with your actual domain
   - hostname: unlimited-iron-creator.yourdomain.com
     service: http://localhost:8080
@@ -24,20 +24,6 @@ ingress:
       keepAliveTimeout: 90s
       # HTTP/2 settings
       http2Origin: false
-      
-  # Health check endpoint (optional but recommended)
-  - hostname: unlimited-iron-creator.yourdomain.com
-    path: /_stcore/health
-    service: http://localhost:8080
-    originRequest:
-      noTLSVerify: true
-      
-  # Websocket support for Streamlit (important!)
-  - hostname: unlimited-iron-creator.yourdomain.com
-    path: /_stcore/stream
-    service: http://localhost:8080
-    originRequest:
-      noTLSVerify: true
       
   # Catch-all rule (REQUIRED - must be last)
   - service: http_status:404
