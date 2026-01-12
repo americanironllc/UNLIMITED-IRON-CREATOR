@@ -1,0 +1,33 @@
+# Cloudflare Workers/Pages Configuration
+# This configuration is for Cloudflare Pages deployment
+
+name = "unlimited-iron-creator"
+compatibility_date = "2024-01-01"
+
+# For Cloudflare Pages
+pages_build_output_dir = "."
+
+# Account details (replace with your account ID from Cloudflare dashboard)
+# account_id = "your-account-id-here"
+
+# Environment variables
+[env.production]
+# Add your environment variables here
+# OPENAI_API_KEY = "your-key-here"
+
+[env.preview]
+# Preview environment settings
+
+# Build configuration
+[build]
+command = "echo 'Build complete'"
+cwd = "."
+
+# Note: This is a basic configuration for Cloudflare Pages.
+# Since this is a Streamlit application that requires a Python server,
+# the recommended deployment method is using Cloudflare Tunnel with Docker.
+# See CLOUDFLARE_DEPLOYMENT.md for detailed instructions.
+
+# For full Streamlit functionality, use:
+# - Cloudflare Tunnel + Docker (recommended)
+# - See CLOUDFLARE_DEPLOYMENT.md for complete setup guide

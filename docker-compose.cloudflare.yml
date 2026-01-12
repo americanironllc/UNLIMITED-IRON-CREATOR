@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # Main Streamlit application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: unlimited-iron-creator
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - STREAMLIT_SERVER_PORT=8080
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_ENABLE_CORS=false
+      - STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
+    volumes:
+      # Persist generated media files
+      - ./generated_media:/app/generated_media
+      # Optional: Mount config files
+      # - ./config.json:/app/config.json:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Cloudflare Tunnel service (optional - for easy setup)
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      # Option 1: Use tunnel token (easier)
+      # Get token from: cloudflared tunnel token unlimited-iron-creator
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+      
+      # Or use credentials file (comment out TUNNEL_TOKEN if using this)
+      # - TUNNEL_CREDENTIALS_FILE=/etc/cloudflared/credentials.json
+    # volumes:
+    #   - ~/.cloudflared:/home/nonroot/.cloudflared
+    depends_on:
+      - app
+    network_mode: "host"
+
+# Optional: Database or storage service
+# Uncomment if you need persistent storage
+#  db:
+#    image: postgres:15-alpine
+#    container_name: unlimited-iron-db
+#    restart: unless-stopped
+#    environment:
+#      POSTGRES_USER: ironuser
+#      POSTGRES_PASSWORD: changeme
+#      POSTGRES_DB: unlimited_iron
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   generated_media:
+#     driver: local
